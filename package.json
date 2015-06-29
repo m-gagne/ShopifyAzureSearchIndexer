@@ -1,0 +1,29 @@
+{
+  "name": "ShopifyAzureSearchIndexer",
+  "version": "0.0.1",
+  "description": "Pulls products from Shopify Store, populates Azure Search with index & documents",
+  "main": "js/UI/app.js",
+  "dependencies": {
+    "react": "^0.12.0",
+    "underscore": "^1.7.0"
+  },
+  "devDependencies": {
+    "browserify": "~6.2.0",    
+    "envify": "~3.0.0",
+    "react": "^0.12.0",
+    "reactify": "^0.15",
+    "watchify": "~2.1.0",
+    "q": "^1.1.2",
+    "request": "latest"
+  },
+  "scripts": {
+    "indexDocuments": "node ./js/DataIndexer/DataIndexer.js"
+  },
+  "author": "Marc Gagne",
+  "browserify": {
+    "transform": [
+      "reactify",
+      "envify"
+    ]
+  }
+}
