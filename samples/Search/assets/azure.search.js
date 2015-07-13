@@ -25,6 +25,7 @@ $(function () {
     this.config = {
       facet: config["facet"] ,
       searchUrl: config["searchUrl"],
+      storeUrl: config["storeUrl"],
       apiKey: config["apiKey"],
       resultTemplateSource: "#search-result-template",
       navigationTemplateSource: "#search-navigation-template"
@@ -45,6 +46,11 @@ $(function () {
           return options.fn(this);
         }
       });
+
+      Handlebars.registerHelper('storeUrl', function(handle) {
+        console.log(that.config.storeUrl + "/products/" + handle);
+        return that.config.storeUrl + "/products/" + handle;
+      });      
     },
 
     _selectFacet: function _selectFacet(value) {
@@ -225,7 +231,7 @@ $(function () {
     }
   };
 
-  var productSuggest = new Bloodhound({
+  var productSuggest = new Bloodhound({    
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
       remote: {
@@ -245,7 +251,8 @@ $(function () {
               result: item["@search.text"],
               title: item["title"],
               vendor: item["vendor"],
-              handle: item["handle"]
+              handle: item["handle"],
+              storeUrl: storeUrl + "/" + item["handle"]
             });
           });
 
@@ -259,6 +266,7 @@ $(function () {
 
   var productSearch = new ProductSearch({
     searchUrl: searchUrl,
+    storeUrl: storeUrl,
     apiKey: apiQueryKey
   });
 
