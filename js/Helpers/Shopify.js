@@ -93,7 +93,27 @@ shopify.products.toAzureSearchDocuments =function(products){
 		doc.product_type = product.product_type;
 		doc.vendor = product.vendor;
 		doc.body_html = product.body_html;
+		doc.handle = product.handle;
 
+		if (product.images && product.images.length > 0) {
+			doc.image = product.images[0].src;
+		}
+
+		var minPrice = product.variants[0].price;
+		var maxPrice = 0;
+		
+		product.variants.forEach(function(variant) {
+			if (variant.price < minPrice) {
+				minPrice = variant.price;
+			}
+			if (variant.price > maxPrice) {
+				maxPrice = variant.price;
+			}
+		});
+
+		doc.min_price = minPrice;
+		doc.max_price = maxPrice;
+		
 		var tags = product.tags.split(',');
 		var totalTags = tags.length;
 		// Current Search Index supports up to 5 custom tags

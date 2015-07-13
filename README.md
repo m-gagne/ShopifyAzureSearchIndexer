@@ -12,6 +12,10 @@
  1. Run the app
  	* `npm run indexDocuments`
 
- ## Next Steps
+## Next Steps
 
  You should now have an Azure Search index populated with products from your Shopify store. See the [Get started with Azure Search](https://azure.microsoft.com/en-us/documentation/articles/search-get-started/) for documentation and samples on how to search, navigate, auto-complete and more.
+
+ ## Search Demo
+
+ Check out samples/Search/search.html for a sample search implementation or try out the [Live Demo](http://mgagne.blob.core.windows.net/public/Search/search.html).  

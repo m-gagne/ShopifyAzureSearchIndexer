@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Azure Search & Shopify Demo</title>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/style.css">
+		<script src="http://twitter.github.io/typeahead.js/js/jquery-1.10.2.min.js"></script>
+		<script src="http://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
+			<script src="assets/azure.search.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row title-bar">
+				<div class="col-md-7 page-title">
+					<h1>Azure Shopify Search Demo</h1>
+				</div>
+				<div class="col-md-5">
+					<div id="search" class="pull-right">
+					    <input class="typeahead" type="text" placeholder="Search for products">
+					    <button id="btnSearch">Search</button>
+					</div>			
+				</div>
+			</div>
+			<div id="search-results" class="row">
+				<div id="search-result-nav" class="col-md-3">
+				</div>
+				<div class="col-md-9">
+					<div id="search-result-products" class="row">
+						<div class="col-md-12">
+							<div class="well">
+							<p>Tip: Search for a video game title.</p>
+						</div>					
+					</div>
+				</div>
+			</div>	
+		</div>
+
+		<script id="search-navigation-template" type="text/x-handlebars-template">
+			<div class="search-sort">
+					<select id="orderBy" class="form-control">
+						<option data-sort="desc" value="score">Relevance</option>					
+						<option data-sort="asc" value="title">Title (A-Z)</option>
+						<option data-sort="desc" value="title">Title (Z-A)</option>
+						<option data-sort="asc" value="min_price">Price (Low-High)</option>
+						<option data-sort="desc" value="min_price">Price (High-Low)</option>
+					</select>
+			</div>
+			<hr>
+			<ul>
+				{{#each categories}}
+					<li class="{{#isActiveFacet}}active{{/isActiveFacet}}" data-facetvalue="{{value}}"><a href="#">{{value}} (<strong>{{count}}</strong>)</a></li>
+				{{/each}}
+			</ul>
+		</script>
+
+		<script id="search-result-template" type="text/x-handlebars-template">
+				{{#each value}}
+					<div class="col-md-3">
+						<div><img src="{{image}}" class="product-image"></div>
+						<div>{{min_price}}</div>
+					</div>
+					<div class="col-md-9">
+						<h2><a href="/{{handle}}">{{title}}</a></h2>
+						<div class="description">{{{body_html}}}</div>
+						<hr>
+					</div>
+				{{else}}
+				<div class="col-md-12">
+					<div class="well">
+					<p>No games found.</p>
+				</div>
+				{{/each}}
+			</div>
+			<div id="search-result-pager">
+			</div>
+
+		</script>
+	</body>
+</html>

@@ -17,6 +17,17 @@ payloads.indexPayload =
             "analyzer": null
         },
         {
+            "name": "handle",
+            "type": "Edm.String",
+            "searchable": false,
+            "filterable": false,
+            "retrievable": true,
+            "sortable": false,
+            "facetable": false,
+            "key": false,
+            "analyzer": null
+        },        
+        {
             "name": "product_type",
             "type": "Edm.String",
             "searchable": true,
@@ -38,6 +49,39 @@ payloads.indexPayload =
             "key": false,
             "analyzer": null
         },
+        {
+            "name": "image",
+            "type": "Edm.String",
+            "searchable": false,
+            "filterable": false,
+            "retrievable": true,
+            "sortable": false,
+            "facetable": false,
+            "key": false,
+            "analyzer": null
+        },        
+        {
+            "name": "min_price",
+            "type": "Edm.Double",
+            "searchable": false,
+            "filterable": true,
+            "retrievable": true,
+            "sortable": true,
+            "facetable": true,
+            "key": false,
+            "analyzer": null
+        },
+        {
+            "name": "max_price",
+            "type": "Edm.Double",
+            "searchable": false,
+            "filterable": true,
+            "retrievable": true,
+            "sortable": true,
+            "facetable": true,
+            "key": false,
+            "analyzer": null
+        },        
         {
             "name": "tag1",
             "type": "Edm.String",

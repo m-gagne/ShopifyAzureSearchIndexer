@@ -72,6 +72,7 @@ var getShopifyProducts = function() {
 
 var populateIndex =function(shopifyProducts) {
     var deferred = Q.defer();
+
     // convert from Shopify Products to Search Documents
     var docs = Shopify.products.toAzureSearchDocuments(shopifyProducts);
 
@@ -107,7 +108,7 @@ var populateIndex =function(shopifyProducts) {
             };
 
             request.post(options, function(error, response, body){
-                console.info("populate index [" + startOffset + " to " + (startOffset + pagedData.length) + "] result: " + response.statusCode);
+                console.info("populated index [" + startOffset + " to " + (startOffset + pagedData.length) + "] result: " + response.statusCode);
                 deferred.resolve();
             });                 
 
